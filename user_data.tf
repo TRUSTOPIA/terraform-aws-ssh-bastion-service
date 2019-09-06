@@ -30,7 +30,7 @@ data "template_file" "docker_setup" {
   template = file("${path.module}/user_data/docker_setup.tpl")
 
   vars = {
-    container_ubuntu_version = var.container_ubuntu_version
+    container_image = var.container_image
   }
 }
 

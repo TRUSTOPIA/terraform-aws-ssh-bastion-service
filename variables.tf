@@ -140,9 +140,9 @@ variable "bastion_vpc_name" {
   default     = "vpc_id"
 }
 
-variable "container_ubuntu_version" {
-  description = "ubuntu version to use for service container. Tested with 16.04 and 18.04"
-  default     = "16.04"
+variable "container_image" {
+  description = "Docker image to use for containers"
+  default     = "ubuntu:16.04"
 }
 
 variable "extra_user_data_content" {
