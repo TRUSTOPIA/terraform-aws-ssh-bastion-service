@@ -186,6 +186,21 @@ variable "custom_ami_id" {
   default     = ""
 }
 
+variable "ebs_root_size" {
+  description = "Volume size of the EC2 root EBS (in GB)"
+  default     = 8
+}
+
+variable "ebs_root_type" {
+  description = "Volume type of the EC2 root EBS (standard, gp2, or io1)"
+  default     = "standard"
+}
+
+variable "ebs_root_encryption" {
+  description = "Enable/disable encryption on the EC2 root EBS"
+  default     = false
+}
+
 variable "security_groups_additional" {
   description = "additional security group IDs to attach to host instance"
   type        = list(string)

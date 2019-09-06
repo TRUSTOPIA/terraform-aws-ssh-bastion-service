@@ -44,6 +44,12 @@ resource "aws_launch_configuration" "bastion-service-host" {
   user_data = data.template_cloudinit_config.config.rendered
   key_name  = var.bastion_service_host_key_name
 
+  root_block_device {
+    volume_size = var.ebs_root_size
+    volume_type = var.ebs_root_type
+    encrypted   = var.ebs_root_encryption
+  }
+
   lifecycle {
     create_before_destroy = true
   }
