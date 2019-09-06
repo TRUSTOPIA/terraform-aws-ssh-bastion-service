@@ -32,3 +32,7 @@ systemctl daemon-reload
 
 #set hostname to match dns
 hostnamectl set-hostname ${bastion_host_name}-${vpc}-bastion-host
+
+#open 2222 on firewall
+iptables -A INPUT -p tcp --dport 2222 -m state --state NEW -j ACCEPT
+ip6tables -A INPUT -p tcp --dport 2222 -m state --state NEW -j ACCEPT
