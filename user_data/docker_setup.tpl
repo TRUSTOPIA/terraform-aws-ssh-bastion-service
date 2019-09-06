@@ -1,10 +1,10 @@
 #!/bin/bash
 #debian specific set up for docker https://docs.docker.com/install/linux/docker-ce/debian/#install-using-the-repository
-apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+DEBIAN_FRONTEND=noninteractive apt install -y -q apt-transport-https ca-certificates curl gnupg2 software-properties-common
 curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
-apt update
-apt install -y docker-ce 
+DEBIAN_FRONTEND=noninteractive apt update
+DEBIAN_FRONTEND=noninteractive apt install -y -q docker-ce
 systemctl start docker
 mkdir -p /opt/sshd_worker
 #Write out Dockerfile
