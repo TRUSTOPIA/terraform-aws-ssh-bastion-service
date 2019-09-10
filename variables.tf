@@ -217,6 +217,12 @@ variable "security_groups_additional" {
   default     = []
 }
 
+variable "security_group_egress_cidr_blocks" {
+  description = "CIDR blocks for security group egress rule"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
 variable "service_name" {
   description = "Unique name per vpc for associated resources- set to some non-default value for multiple deployments per vpc"
   default     = "bastion-service"

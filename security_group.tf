@@ -44,7 +44,7 @@ resource "aws_security_group_rule" "host_ssh_in_cond" {
   description       = "bastion HOST access"
 }
 
-# Permissive egress policy because we want users to be able to install their own packages 
+# Permissive egress policy because we want users to be able to install their own packages
 
 resource "aws_security_group_rule" "bastion_host_out" {
   type              = "egress"
@@ -52,11 +52,11 @@ resource "aws_security_group_rule" "bastion_host_out" {
   to_port           = 65535
   protocol          = -1
   security_group_id = aws_security_group.bastion_service.id
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = var.security_group_egress_cidr_blocks
   description       = "bastion service and host egress"
 }
 
-# access from lb cidr ranges for healthchecks 
+# access from lb cidr ranges for healthchecks
 
 data "aws_subnet" "lb_subnets" {
   count = length(var.subnets_lb)
