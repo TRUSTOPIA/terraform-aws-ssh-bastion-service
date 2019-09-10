@@ -9,6 +9,12 @@ resource "aws_lb" "bastion-service" {
   subnets                          = var.subnets_lb
   enable_cross_zone_load_balancing = true
   tags                             = var.tags
+
+  access_logs {
+    bucket  = var.lb_access_logs_bucket
+    prefix  = var.lb_access_logs_prefix
+    enabled = var.lb_access_logs_bucket != null
+  }
 }
 
 ######################################################
@@ -62,9 +68,9 @@ resource "aws_lb_target_group" "bastion-service" {
   tags = var.tags
 }
 
-######################################################	
+######################################################
 # Target group 	host - conditional
-#######################################################	
+#######################################################
 resource "aws_lb_target_group" "bastion-host" {
   count    = local.hostport_whitelisted ? 1 : 0
   name     = "bastion-host"

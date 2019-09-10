@@ -135,6 +135,16 @@ variable "lb_healthcheck_port" {
   default     = "2222"
 }
 
+variable "lb_access_logs_bucket" {
+  description = "Name of the bucket to store load balancer access logs"
+  default     = null
+}
+
+variable "lb_access_logs_prefix" {
+  description = "Prefix to add to access logs in the bucket"
+  default     = null
+}
+
 variable "bastion_vpc_name" {
   description = "define the last part of the hostname, by default this is the vpc ID with magic default value of 'vpc_id' but you can pass a custom string, or an empty value to omit this"
   default     = "vpc_id"
