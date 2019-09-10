@@ -10,10 +10,13 @@ resource "aws_lb" "bastion-service" {
   enable_cross_zone_load_balancing = true
   tags                             = var.tags
 
-  access_logs {
-    bucket  = var.lb_access_logs_bucket
-    prefix  = var.lb_access_logs_prefix
-    enabled = var.lb_access_logs_bucket != null
+  dynamic "access_logs" {
+    for_each = compact([var.lb_access_logs_bucket])
+    content {
+      bucket  = var.lb_access_logs_bucket
+      prefix  = var.lb_access_logs_prefix
+      enabled = true
+    }
   }
 }
 
