@@ -70,7 +70,7 @@ data "null_data_source" "asg-tags" {
 }
 
 resource "aws_autoscaling_group" "bastion-service" {
-  availability_zones   = data.aws_availability_zones.available.names
+  #availability_zones   = data.aws_availability_zones.available.names
   name_prefix          = "${var.service_name}-asg"
   max_size             = var.asg_max
   min_size             = var.asg_min
